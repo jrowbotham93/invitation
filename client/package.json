@@ -1,0 +1,45 @@
+{
+  "name": "invitation",
+  "version": "1.0.0",
+  "description": "wedding invite",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack serve",
+    "build": "webpack --config webpack.config.js",
+    "deploy": "firebase deploy --only hosting"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jrowbotham93/invitation.git"
+  },
+  "keywords": [
+    "firebase",
+    "webpack"
+  ],
+  "author": "James Rowbotham",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jrowbotham93/invitation/issues"
+  },
+  "homepage": "https://github.com/jrowbotham93/invitation#readme",
+  "dependencies": {
+    "@babel/plugin-transform-runtime": "^7.12.1",
+    "@babel/runtime": "^7.12.5",
+    "clean-webpack-plugin": "^3.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.9",
+    "@babel/preset-env": "^7.12.7",
+    "babel-loader": "^8.2.2",
+    "css-loader": "^5.0.1",
+    "dotenv-webpack": "^6.0.0",
+    "html-loader": "^1.3.2",
+    "html-webpack-plugin": "^5.0.0-alpha.15",
+    "style-loader": "^2.0.0",
+    "url-loader": "^4.1.1",
+    "webpack": "^5.10.0",
+    "webpack-cli": "^4.2.0",
+    "webpack-dev-server": "^3.11.0"
+  }
+}

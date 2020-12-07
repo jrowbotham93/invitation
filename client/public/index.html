@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+
+<html><head><script defer src="bundle.js"></script></head>
+    <body>
+        <main>
+            <div class="container spacing flex flex-center column">
+                <h1>Gijs & James</h1>
+                <h2>are getting married...</h2>
+                <h3>Come and celebrate with us</h3>
+
+                <time datetime="2020-12-18">18th Decemeber</time>
+                <time>16:00 - late</time>
+                <a
+                    href="https://goo.gl/maps/nkPE6bxaerDQS1j6A"
+                    alt="directions">
+                    Bercylaan 71, 1031KP, Amsterdam
+                </a>
+                <p class="spacingVertical"> Please fill out the form below so we can keep track of numbers</p>
+                <h2 class="attendeeCount"></h2>
+                <form class="spacingVertical attendeeDetailsForm"name="attendeeDetailsForm">
+                    <fieldset class="flex column space-evenly">
+                        <legend>Add yourelf as an attendee</legend>
+
+                        <label for="name">Attendee Name</label>
+                        <input  type="text" name="name" alt="attendee name" placeholder="James Smith"  />
+
+                        <label for="attending">Tick the box if you are definitely attending</label>
+                        <input class="checkboxAttending" type="checkbox" name="attending" alt="attending guest"  />
+
+                        <label for="plusOne">Tick the box if you would like a plus one</label>
+                        <input class="checkboxPlusOne" type="checkbox" name="plusOne" alt="plus one"  />
+
+                        <label class="textFieldPlusOne visible" for="plusOneName">Plus one's name</label>
+                        <input class="textFieldPlusOne visible" type="text" name="plusOneName" placeholder="Samuel Smith" alt="plus one name"/>
+
+                        <input type="submit" name="submit"/>
+                    </fieldset>
+                </form>
+                <table>
+                    <caption>Guest list</caption>
+                    <tbody class="attendeeTable">
+                        <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">Attending</th>
+                            <th scope="col">Plus One</th>
+                            <th scope="col">Name of plus one</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </body>
+</html>
