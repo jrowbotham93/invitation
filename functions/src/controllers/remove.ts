@@ -8,7 +8,7 @@ export default async function remove(
     db.collection(attendeeCollection)
       .doc(req.params.attendeeId)
       .delete()
-      .then(() => res.status(204).send('Document successfully deleted!'))
+      .then(() => res.status(204).send(req.params.attendeeId))
       .catch(function (error: Error) {
         res.status(500).send(error);
       });

@@ -18,8 +18,8 @@ export default async function create(
       plusOne: req.body['plusOne'],
       plusOneName: req.body['plusOneName'],
     };
-    const newDoc = await db.collection(attendeeCollection).add(attendee);
-    res.status(201).send(`Created a new attendee: ${newDoc.id}`);
+    const newAtt = await db.collection(attendeeCollection).add(attendee);
+    res.status(201).json({ id: newAtt.id, data: attendee });
   } catch (error) {
     res.status(400).send('Invalid entry');
   }

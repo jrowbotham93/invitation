@@ -1,26 +1,16 @@
-// Firebase App (the core Firebase SDK) is always required and must be listed first
-import firebase from 'firebase/app';
-// If you are using v7 or any earlier version of the JS SDK, you should import firebase using namespace import
-// import * as firebase from "firebase/app"
-
-// If you enabled Analytics in your project, add the Firebase SDK for Analytics
-import 'firebase/analytics';
-
-import { validateCheckboxInput } from './utils';
 import '../index.html';
 import '../styles/app.css';
-import {
-  createAttendee,
-  readAttendees,
-  renderPlusOneInputField,
-  removeAttendee,
-} from './api';
+
+import { attendeeState } from './state';
+import { validateCheckboxInput } from './utils';
+import { renderPlusOneInputField, renderAttendeesCount } from './render';
+import { form, checkboxPlusOne } from './globals';
+
+import { createAttendee, readAttendees, removeAttendee } from './api';
 
 window.addEventListener('load', async function () {
   await readAttendees();
 
-  const form = document.querySelector('.attendeeDetailsForm');
-  const checkboxPlusOne = document.querySelector('.checkboxPlusOne');
   const removeSelectedAttendee = document.querySelectorAll('.removeAttendee');
 
   form.addEventListener('submit', function (event) {
@@ -44,11 +34,18 @@ window.addEventListener('load', async function () {
     form.reset();
   });
 
-  removeSelectedAttendee.forEach((tableRow) =>
+  removeSelectedAttendee.forEach((tableRow) => {
     tableRow.addEventListener('click', (event) => {
-      removeAttendee(event.target.getAttribute('name'));
-    })
-  );
+      let attendeeId = event.target.getAttribute('name');
+      let plusOne = event.target.previousElementSibling.innerHTML;
+      let count = plusOne.length ? 2 : 1;
+
+      renderAttendeesCount((attendeeState.attendeeCount -= count));
+      removeAttendee(attendeeId);
+
+      return event.target.parentElement.remove();
+    });
+  });
 
   checkboxPlusOne.addEventListener('change', (event) => {
     const bool = validateCheckboxInput(event.target.value);
