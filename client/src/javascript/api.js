@@ -1,6 +1,7 @@
-import { attendeeState } from './state';
+// import { attendeeState } from './state';
 import { config } from './globals';
-import { renderAttendeesCount, renderAttendeesList } from './render';
+import { renderAttendeesList } from './render';
+import { getTotalAttendees } from './utils';
 
 //  create a new attendee
 export async function createAttendee(data) {
@@ -13,10 +14,8 @@ export async function createAttendee(data) {
     body: JSON.stringify(data),
   });
   if (res.ok) {
-    res.json().then(function (attendee) {
-      renderAttendeesList(Array(attendee));
-      let count = attendee.data.plusOne ? 2 : 1;
-      renderAttendeesCount((attendeeState.attendeeCount += count));
+    res.json().then(async function (attendee) {
+      await getTotalAttendees(attendee);
     });
   }
 }
@@ -30,18 +29,8 @@ export async function readAttendees() {
   if (response.ok) {
     const res = await response.json().then((attendee) => attendee);
     await renderAttendeesList(res);
-    await getTotalAttendees(res);
+    res.forEach((attendee) => getTotalAttendees(attendee));
   }
-}
-
-function getTotalAttendees(attendees) {
-  attendees.forEach(({ data }) => {
-    if (data.plusOne && data.plusOne) {
-      attendeeState.attendeeCount += 1;
-    }
-    return (attendeeState.attendeeCount += 1);
-  });
-  renderAttendeesCount(attendeeState.attendeeCount);
 }
 
 //  update an attendee

@@ -26,7 +26,7 @@
                         <legend>Add yourelf as an attendee</legend>
 
                         <label for="name">Attendee Name</label>
-                        <input  type="text" name="name" alt="attendee name" placeholder="James Smith"  />
+                        <input  type="text" name="name" alt="attendee name" required placeholder="James Smith"  />
 
                         <label for="attending">Tick the box if you are definitely attending</label>
                         <input class="checkboxAttending" type="checkbox" name="attending" alt="attending guest"  />
@@ -36,8 +36,7 @@
 
                         <label class="textFieldPlusOne visible" for="plusOneName">Plus one's name</label>
                         <input class="textFieldPlusOne visible" type="text" name="plusOneName" placeholder="Samuel Smith" alt="plus one name"/>
-
-                        <input type="submit" name="submit"/>
+                        <input type="submit" class="submitForm" value="Submit"/>
                     </fieldset>
                 </form>
                 <table>
@@ -48,12 +47,10 @@
                             <th scope="col">Attending</th>
                             <th scope="col">Plus One</th>
                             <th scope="col">Name of plus one</th>
-                            <th scope="col"></th>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </main>
-
     </body>
 </html>

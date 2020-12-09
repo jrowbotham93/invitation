@@ -2,7 +2,7 @@ import { attendeeCount, attendeeTable } from './globals';
 
 export function renderAttendeesCount(count) {
   let color = '';
-
+  console.log(count);
   if (count < 10) color = 'Green';
   else if (count < 20) color = 'Orange';
   else color = 'Red';
@@ -16,8 +16,8 @@ export function renderPlusOneInputField(bool) {
   textFieldPlusOne.forEach((i) => i.classList.toggle('visible'));
 }
 
-const tableRow = (id, data) =>
-  `<tr class="attendeeRow">
+const tableRow = (attendeeId, data) =>
+  `<tr class="attendeeRow" id=${attendeeId}>
     <td>${data.name}</td>
     <td>${
       data.attending
@@ -30,16 +30,21 @@ const tableRow = (id, data) =>
         : '<span class="htmlCross">&#10007;</span>'
     }</td>
     <td>${data.plusOneName}</td>
-    <td class="removeAttendee" name="${id}">
-      Remove attendee
-    </td>
   </tr>`;
+
+const tableRowNew = (attendeeId, data) =>
+  `<fieldset class="attendeeRow" id=${attendeeId}>
+    <input type="text" value="${data.name}"/>
+    <input type="checkbox" ${data.attending ? 'checked' : ''}/>
+    <input type="checkbox" ${data.plusOne ? 'checked' : ''}/>
+    <input type="text" value="${data.plusOneName}"/>
+  </fieldset>`;
 
 export function renderAttendeesList(attendees) {
   if (attendees.length < 1) return;
   else {
     const attendeeRows = `${attendees
-      .map(({ id, data }) => tableRow(id, data))
+      .map(({ id, data }) => tableRowNew(id, data))
       .join('')}`;
     attendeeTable.insertAdjacentHTML('beforeend', attendeeRows);
   }

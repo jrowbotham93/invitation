@@ -12,11 +12,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _index_html__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(4);
 /* harmony import */ var _index_html__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_index_html__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _styles_app_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(5);
-/* harmony import */ var _state__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(9);
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(10);
-/* harmony import */ var _render__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(11);
-/* harmony import */ var _globals__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(12);
-/* harmony import */ var _api__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(13);
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(9);
+/* harmony import */ var _render__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(11);
+/* harmony import */ var _globals__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(12);
+/* harmony import */ var _api__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(13);
 
 
 
@@ -32,33 +31,34 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
 
 
-
 window.addEventListener('load', /*#__PURE__*/_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default()( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-  var removeSelectedAttendee;
   return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
     while (1) {
       switch (_context.prev = _context.next) {
         case 0:
           _context.next = 2;
-          return (0,_api__WEBPACK_IMPORTED_MODULE_8__.readAttendees)();
+          return (0,_api__WEBPACK_IMPORTED_MODULE_7__.readAttendees)();
 
         case 2:
-          removeSelectedAttendee = document.querySelectorAll('.removeAttendee');
-          _globals__WEBPACK_IMPORTED_MODULE_7__.form.addEventListener('submit', function (event) {
-            event.preventDefault();
-            new FormData(_globals__WEBPACK_IMPORTED_MODULE_7__.form);
-          });
-          _globals__WEBPACK_IMPORTED_MODULE_7__.form.addEventListener('formdata', function (event) {
-            var data = event.formData;
-            var dataToPost = {};
+          document.querySelector('.attendeeDetailsForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            var formData = new FormData(e.target);
+            var dataToPost = {
+              attending: function attending(attendee) {
+                return (0,_utils__WEBPACK_IMPORTED_MODULE_4__.validateCheckboxInput)(attendee);
+              },
+              plusOne: function plusOne(attendee) {
+                return (0,_utils__WEBPACK_IMPORTED_MODULE_4__.validateCheckboxInput)(attendee);
+              }
+            };
 
-            var _iterator = _createForOfIteratorHelper(data.entries(data)),
+            var _iterator = _createForOfIteratorHelper(formData.entries()),
                 _step;
 
             try {
               for (_iterator.s(); !(_step = _iterator.n()).done;) {
-                var responses = _step.value;
-                dataToPost[responses[0]] = responses[1];
+                var data = _step.value;
+                dataToPost[data[0]] = data[1];
               }
             } catch (err) {
               _iterator.e(err);
@@ -66,27 +66,15 @@ window.addEventListener('load', /*#__PURE__*/_babel_runtime_helpers_asyncToGener
               _iterator.f();
             }
 
-            dataToPost.attending = (0,_utils__WEBPACK_IMPORTED_MODULE_5__.validateCheckboxInput)(dataToPost.attending);
-            dataToPost.plusOne = (0,_utils__WEBPACK_IMPORTED_MODULE_5__.validateCheckboxInput)(dataToPost.plusOne);
-            (0,_api__WEBPACK_IMPORTED_MODULE_8__.createAttendee)(dataToPost);
-            _globals__WEBPACK_IMPORTED_MODULE_7__.form.reset();
+            (0,_api__WEBPACK_IMPORTED_MODULE_7__.createAttendee)(dataToPost);
+            e.target.reset();
           });
-          removeSelectedAttendee.forEach(function (tableRow) {
-            tableRow.addEventListener('click', function (event) {
-              var attendeeId = event.target.getAttribute('name');
-              var plusOne = event.target.previousElementSibling.innerHTML;
-              var count = plusOne.length ? 2 : 1;
-              (0,_render__WEBPACK_IMPORTED_MODULE_6__.renderAttendeesCount)(_state__WEBPACK_IMPORTED_MODULE_4__.attendeeState.attendeeCount -= count);
-              (0,_api__WEBPACK_IMPORTED_MODULE_8__.removeAttendee)(attendeeId);
-              return event.target.parentElement.remove();
-            });
-          });
-          _globals__WEBPACK_IMPORTED_MODULE_7__.checkboxPlusOne.addEventListener('change', function (event) {
-            var bool = (0,_utils__WEBPACK_IMPORTED_MODULE_5__.validateCheckboxInput)(event.target.value);
-            (0,_render__WEBPACK_IMPORTED_MODULE_6__.renderPlusOneInputField)(bool);
+          _globals__WEBPACK_IMPORTED_MODULE_6__.checkboxPlusOne.addEventListener('change', function (event) {
+            var bool = (0,_utils__WEBPACK_IMPORTED_MODULE_4__.validateCheckboxInput)(event.target.value);
+            (0,_render__WEBPACK_IMPORTED_MODULE_5__.renderPlusOneInputField)(bool);
           });
 
-        case 7:
+        case 4:
         case "end":
           return _context.stop();
       }
@@ -902,7 +890,7 @@ module.exports = _asyncToGenerator;
 /***/ ((module) => {
 
 // Module
-var code = "<!DOCTYPE html>\n<link rel=\"preconnect\" href=\"https://fonts.gstatic.com\">\n<link href=\"https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap\" rel=\"stylesheet\">\n<script src=\"/__/firebase/8.1.2/firebase-app.js\"></script>\n<script src=\"/__/firebase/8.1.2/firebase-analytics.js\"></script>\n<script src=\"/__/firebase/init.js\"></script>\n<html>\n    <body>\n        <main>\n            <div class=\"container spacing flex flex-center column\">\n                <h1>Gijs & James</h1>\n                <h2>are getting married...</h2>\n                <h3>Come and celebrate with us</h3>\n\n                <time datetime=\"2020-12-18\">18th Decemeber</time>\n                <time>16:00 - late</time>\n                <a\n                    href=\"https://goo.gl/maps/nkPE6bxaerDQS1j6A\"\n                    alt=\"directions\">\n                    Bercylaan 71, 1031KP, Amsterdam\n                </a>\n                <p class=\"spacingVertical\"> Please fill out the form below so we can keep track of numbers</p>\n                <h2 class=\"attendeeCount\"></h2>\n                <form class=\"spacingVertical attendeeDetailsForm\" name=\"attendeeDetailsForm\">\n                    <fieldset class=\"flex column space-evenly\">\n                        <legend>Add yourelf as an attendee</legend>\n\n                        <label for=\"name\">Attendee Name</label>\n                        <input  type=\"text\" name=\"name\" alt=\"attendee name\" placeholder=\"James Smith\"  />\n\n                        <label for=\"attending\">Tick the box if you are definitely attending</label>\n                        <input class=\"checkboxAttending\" type=\"checkbox\" name=\"attending\" alt=\"attending guest\"  />\n\n                        <label for=\"plusOne\">Tick the box if you would like a plus one</label>\n                        <input class=\"checkboxPlusOne\" type=\"checkbox\" name=\"plusOne\" alt=\"plus one\"  />\n\n                        <label class=\"textFieldPlusOne visible\" for=\"plusOneName\">Plus one's name</label>\n                        <input class=\"textFieldPlusOne visible\" type=\"text\" name=\"plusOneName\" placeholder=\"Samuel Smith\" alt=\"plus one name\"/>\n\n                        <input type=\"submit\" name=\"submit\"/>\n                    </fieldset>\n                </form>\n                <table>\n                    <caption>Guest list</caption>\n                    <tbody class=\"attendeeTable\">\n                        <tr>\n                            <th scope=\"col\">Name</th>\n                            <th scope=\"col\">Attending</th>\n                            <th scope=\"col\">Plus One</th>\n                            <th scope=\"col\">Name of plus one</th>\n                            <th scope=\"col\"></th>\n                        </tr>\n                    </tbody>\n                </table>\n            </div>\n        </main>\n\n    </body>\n</html>";
+var code = "<!DOCTYPE html>\n<link rel=\"preconnect\" href=\"https://fonts.gstatic.com\">\n<link href=\"https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap\" rel=\"stylesheet\">\n<script src=\"/__/firebase/8.1.2/firebase-app.js\"></script>\n<script src=\"/__/firebase/8.1.2/firebase-analytics.js\"></script>\n<script src=\"/__/firebase/init.js\"></script>\n<html>\n    <body>\n        <main>\n            <div class=\"container spacing flex flex-center column\">\n                <h1>Gijs & James</h1>\n                <h2>are getting married...</h2>\n                <h3>Come and celebrate with us</h3>\n\n                <time datetime=\"2020-12-18\">18th Decemeber</time>\n                <time>16:00 - late</time>\n                <a\n                    href=\"https://goo.gl/maps/nkPE6bxaerDQS1j6A\"\n                    alt=\"directions\">\n                    Bercylaan 71, 1031KP, Amsterdam\n                </a>\n                <p class=\"spacingVertical\"> Please fill out the form below so we can keep track of numbers</p>\n                <h2 class=\"attendeeCount\"></h2>\n                <form class=\"spacingVertical attendeeDetailsForm\" name=\"attendeeDetailsForm\">\n                    <fieldset class=\"flex column space-evenly\">\n                        <legend>Add yourelf as an attendee</legend>\n\n                        <label for=\"name\">Attendee Name</label>\n                        <input  type=\"text\" name=\"name\" alt=\"attendee name\" required placeholder=\"James Smith\"  />\n\n                        <label for=\"attending\">Tick the box if you are definitely attending</label>\n                        <input class=\"checkboxAttending\" type=\"checkbox\" name=\"attending\" alt=\"attending guest\"  />\n\n                        <label for=\"plusOne\">Tick the box if you would like a plus one</label>\n                        <input class=\"checkboxPlusOne\" type=\"checkbox\" name=\"plusOne\" alt=\"plus one\"  />\n\n                        <label class=\"textFieldPlusOne visible\" for=\"plusOneName\">Plus one's name</label>\n                        <input class=\"textFieldPlusOne visible\" type=\"text\" name=\"plusOneName\" placeholder=\"Samuel Smith\" alt=\"plus one name\"/>\n                        <input type=\"submit\" class=\"submitForm\" value=\"Submit\"/>\n                    </fieldset>\n                </form>\n                <table>\n                    <caption>Guest list</caption>\n                    <tbody class=\"attendeeTable\">\n                        <tr>\n                            <th scope=\"col\">Name</th>\n                            <th scope=\"col\">Attending</th>\n                            <th scope=\"col\">Plus One</th>\n                            <th scope=\"col\">Name of plus one</th>\n                        </tr>\n                    </tbody>\n                </table>\n            </div>\n        </main>\n    </body>\n</html>";
 // Exports
 module.exports = code;
 
@@ -1306,12 +1294,31 @@ module.exports = function (cssWithMappingToString) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "attendeeState": () => /* binding */ attendeeState
+/* harmony export */   "validateCheckboxInput": () => /* binding */ validateCheckboxInput,
+/* harmony export */   "getTotalAttendees": () => /* binding */ getTotalAttendees
 /* harmony export */ });
-var attendeeState = {
-  attendeeCount: 0,
-  attendeeToRemove: ''
-};
+/* harmony import */ var _state__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(10);
+/* harmony import */ var _render__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(11);
+
+
+function validateCheckboxInput(input) {
+  return input === 'on' ? true : false;
+}
+function getTotalAttendees(attendee) {
+  if (!attendee) return;
+  var data = attendee.data;
+
+  if (data['plusOne'] && data['plusOneName'].length) {
+    _state__WEBPACK_IMPORTED_MODULE_0__.attendeeState.count += 1;
+  }
+
+  if (data['attending'] && data['name'].length) {
+    _state__WEBPACK_IMPORTED_MODULE_0__.attendeeState.count += 1;
+  }
+}
+_state__WEBPACK_IMPORTED_MODULE_0__.attendeeState.registerNewListener(function (val) {
+  return (0,_render__WEBPACK_IMPORTED_MODULE_1__.renderAttendeesCount)(val);
+});
 
 /***/ }),
 /* 10 */
@@ -1320,11 +1327,25 @@ var attendeeState = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "validateCheckboxInput": () => /* binding */ validateCheckboxInput
+/* harmony export */   "attendeeState": () => /* binding */ attendeeState
 /* harmony export */ });
-function validateCheckboxInput(input) {
-  return input === 'on' ? true : false;
-}
+var attendeeState = {
+  countValue: 0,
+
+  get count() {
+    return this.countValue;
+  },
+
+  set count(val) {
+    this.countValue = val;
+    this.countListener(val);
+  },
+
+  countListener: function countListener(val) {},
+  registerNewListener: function registerNewListener(externalListenerFunction) {
+    this.countListener = externalListenerFunction;
+  }
+};
 
 /***/ }),
 /* 11 */
@@ -1341,6 +1362,7 @@ __webpack_require__.r(__webpack_exports__);
 
 function renderAttendeesCount(count) {
   var color = '';
+  console.log(count);
   if (count < 10) color = 'Green';else if (count < 20) color = 'Orange';else color = 'Red';
   var highlightNumber = "<span class=\"highlightNumber".concat(color, "\">").concat(count, "</span>");
   _globals__WEBPACK_IMPORTED_MODULE_0__.attendeeCount.innerHTML = "Currenly ".concat(highlightNumber, " guests confirmed.");
@@ -1353,7 +1375,7 @@ function renderPlusOneInputField(bool) {
 }
 
 var tableRow = function tableRow(id, data) {
-  return "<tr class=\"attendeeRow\">\n    <td>".concat(data.name, "</td>\n    <td>").concat(data.attending ? '<span class="htmlTick">&#10004</span>' : '<span class="htmlCross">&#10007;</span>', "</td>\n    <td>").concat(data.plusOne ? '<span class="htmlTick">&#10004</span>' : '<span class="htmlCross">&#10007;</span>', "</td>\n    <td>").concat(data.plusOneName, "</td>\n    <td class=\"removeAttendee\" name=\"").concat(id, "\">\n      Remove attendee\n    </td>\n  </tr>");
+  return "<tr class=\"attendeeRow\">\n    <td>".concat(data.name, "</td>\n    <td>").concat(data.attending ? '<span class="htmlTick">&#10004</span>' : '<span class="htmlCross">&#10007;</span>', "</td>\n    <td>").concat(data.plusOne ? '<span class="htmlTick">&#10004</span>' : '<span class="htmlCross">&#10007;</span>', "</td>\n    <td>").concat(data.plusOneName, "</td>\n  </tr>");
 };
 
 function renderAttendeesList(attendees) {
@@ -1376,13 +1398,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "attendeeTable": () => /* binding */ attendeeTable,
 /* harmony export */   "attendeeCount": () => /* binding */ attendeeCount,
-/* harmony export */   "form": () => /* binding */ form,
+/* harmony export */   "submitForm": () => /* binding */ submitForm,
 /* harmony export */   "checkboxPlusOne": () => /* binding */ checkboxPlusOne,
 /* harmony export */   "config": () => /* binding */ config
 /* harmony export */ });
 var attendeeTable = document.querySelector('.attendeeTable');
 var attendeeCount = document.querySelector('.attendeeCount');
-var form = document.querySelector('.attendeeDetailsForm');
+var submitForm = document.querySelector('.submitForm');
 var checkboxPlusOne = document.querySelector('.checkboxPlusOne');
 var config = function config(param) {
   return {
@@ -1406,11 +1428,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(3);
 /* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _state__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(9);
-/* harmony import */ var _globals__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(12);
-/* harmony import */ var _render__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(11);
+/* harmony import */ var _globals__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(12);
+/* harmony import */ var _render__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(11);
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(9);
 
 
+// import { attendeeState } from './state';
 
 
  //  create a new attendee
@@ -1420,15 +1443,15 @@ function createAttendee(_x) {
 } //  get all attendees
 
 function _createAttendee() {
-  _createAttendee = _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default()( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(data) {
+  _createAttendee = _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default()( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(data) {
     var _config, url, res;
 
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
       while (1) {
-        switch (_context.prev = _context.next) {
+        switch (_context2.prev = _context2.next) {
           case 0:
-            _config = (0,_globals__WEBPACK_IMPORTED_MODULE_3__.config)(), url = _config.url;
-            _context.next = 3;
+            _config = (0,_globals__WEBPACK_IMPORTED_MODULE_2__.config)(), url = _config.url;
+            _context2.next = 3;
             return fetch(url, {
               method: 'POST',
               headers: {
@@ -1438,104 +1461,107 @@ function _createAttendee() {
             });
 
           case 3:
-            res = _context.sent;
+            res = _context2.sent;
 
             if (res.ok) {
-              res.json().then(function (attendee) {
-                (0,_render__WEBPACK_IMPORTED_MODULE_4__.renderAttendeesList)(Array(attendee));
-                var count = attendee.data.plusOne ? 2 : 1;
-                (0,_render__WEBPACK_IMPORTED_MODULE_4__.renderAttendeesCount)(_state__WEBPACK_IMPORTED_MODULE_2__.attendeeState.attendeeCount += count);
-              });
+              res.json().then( /*#__PURE__*/function () {
+                var _ref = _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default()( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(attendee) {
+                  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+                    while (1) {
+                      switch (_context.prev = _context.next) {
+                        case 0:
+                          _context.next = 2;
+                          return (0,_utils__WEBPACK_IMPORTED_MODULE_4__.getTotalAttendees)(attendee);
+
+                        case 2:
+                        case "end":
+                          return _context.stop();
+                      }
+                    }
+                  }, _callee);
+                }));
+
+                return function (_x5) {
+                  return _ref.apply(this, arguments);
+                };
+              }());
             }
 
           case 5:
-          case "end":
-            return _context.stop();
-        }
-      }
-    }, _callee);
-  }));
-  return _createAttendee.apply(this, arguments);
-}
-
-function readAttendees() {
-  return _readAttendees.apply(this, arguments);
-}
-
-function _readAttendees() {
-  _readAttendees = _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default()( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
-    var _config2, url, response, res;
-
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
-      while (1) {
-        switch (_context2.prev = _context2.next) {
-          case 0:
-            _config2 = (0,_globals__WEBPACK_IMPORTED_MODULE_3__.config)(), url = _config2.url;
-            _context2.next = 3;
-            return fetch(url, {
-              method: 'GET'
-            });
-
-          case 3:
-            response = _context2.sent;
-
-            if (!response.ok) {
-              _context2.next = 12;
-              break;
-            }
-
-            _context2.next = 7;
-            return response.json().then(function (attendee) {
-              return attendee;
-            });
-
-          case 7:
-            res = _context2.sent;
-            _context2.next = 10;
-            return (0,_render__WEBPACK_IMPORTED_MODULE_4__.renderAttendeesList)(res);
-
-          case 10:
-            _context2.next = 12;
-            return getTotalAttendees(res);
-
-          case 12:
           case "end":
             return _context2.stop();
         }
       }
     }, _callee2);
   }));
-  return _readAttendees.apply(this, arguments);
+  return _createAttendee.apply(this, arguments);
 }
 
-function getTotalAttendees(attendees) {
-  attendees.forEach(function (_ref) {
-    var data = _ref.data;
-
-    if (data.plusOne && data.plusOne) {
-      _state__WEBPACK_IMPORTED_MODULE_2__.attendeeState.attendeeCount += 1;
-    }
-
-    return _state__WEBPACK_IMPORTED_MODULE_2__.attendeeState.attendeeCount += 1;
-  });
-  (0,_render__WEBPACK_IMPORTED_MODULE_4__.renderAttendeesCount)(_state__WEBPACK_IMPORTED_MODULE_2__.attendeeState.attendeeCount);
+function readAttendees() {
+  return _readAttendees.apply(this, arguments);
 } //  update an attendee
 
+function _readAttendees() {
+  _readAttendees = _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default()( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
+    var _config2, url, response, res;
+
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
+      while (1) {
+        switch (_context3.prev = _context3.next) {
+          case 0:
+            _config2 = (0,_globals__WEBPACK_IMPORTED_MODULE_2__.config)(), url = _config2.url;
+            _context3.next = 3;
+            return fetch(url, {
+              method: 'GET'
+            });
+
+          case 3:
+            response = _context3.sent;
+
+            if (!response.ok) {
+              _context3.next = 11;
+              break;
+            }
+
+            _context3.next = 7;
+            return response.json().then(function (attendee) {
+              return attendee;
+            });
+
+          case 7:
+            res = _context3.sent;
+            _context3.next = 10;
+            return (0,_render__WEBPACK_IMPORTED_MODULE_3__.renderAttendeesList)(res);
+
+          case 10:
+            res.forEach(function (attendee) {
+              return (0,_utils__WEBPACK_IMPORTED_MODULE_4__.getTotalAttendees)(attendee);
+            });
+
+          case 11:
+          case "end":
+            return _context3.stop();
+        }
+      }
+    }, _callee3);
+  }));
+  return _readAttendees.apply(this, arguments);
+}
 
 function updateAttendee(_x2, _x3) {
   return _updateAttendee.apply(this, arguments);
 } //  delete an attendee
 
 function _updateAttendee() {
-  _updateAttendee = _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default()( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3(data, id) {
+  _updateAttendee = _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default()( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4(data, id) {
     var _config3, url, response;
 
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
       while (1) {
-        switch (_context3.prev = _context3.next) {
+        switch (_context4.prev = _context4.next) {
           case 0:
-            _config3 = (0,_globals__WEBPACK_IMPORTED_MODULE_3__.config)(id), url = _config3.url;
-            _context3.next = 3;
+            _config3 = (0,_globals__WEBPACK_IMPORTED_MODULE_2__.config)(id), url = _config3.url;
+            _context4.next = 3;
             return fetch(url, {
               method: 'PUT',
               headers: {
@@ -1545,15 +1571,15 @@ function _updateAttendee() {
             });
 
           case 3:
-            response = _context3.sent;
-            return _context3.abrupt("return", response);
+            response = _context4.sent;
+            return _context4.abrupt("return", response);
 
           case 5:
           case "end":
-            return _context3.stop();
+            return _context4.stop();
         }
       }
-    }, _callee3);
+    }, _callee4);
   }));
   return _updateAttendee.apply(this, arguments);
 }
@@ -1563,36 +1589,36 @@ function removeAttendee(_x4) {
 }
 
 function _removeAttendee() {
-  _removeAttendee = _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default()( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4(id) {
+  _removeAttendee = _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default()( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee5(id) {
     var _config4, url, response;
 
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee5$(_context5) {
       while (1) {
-        switch (_context4.prev = _context4.next) {
+        switch (_context5.prev = _context5.next) {
           case 0:
-            _state__WEBPACK_IMPORTED_MODULE_2__.attendeeState.attendeeToRemove = id;
-            _config4 = (0,_globals__WEBPACK_IMPORTED_MODULE_3__.config)(id), url = _config4.url;
-            _context4.next = 4;
+            attendeeState.attendeeToRemove = id;
+            _config4 = (0,_globals__WEBPACK_IMPORTED_MODULE_2__.config)(id), url = _config4.url;
+            _context5.next = 4;
             return fetch(url, {
               method: 'DELETE'
             });
 
           case 4:
-            response = _context4.sent;
+            response = _context5.sent;
 
             if (!response.ok) {
-              _context4.next = 7;
+              _context5.next = 7;
               break;
             }
 
-            return _context4.abrupt("return", response);
+            return _context5.abrupt("return", response);
 
           case 7:
           case "end":
-            return _context4.stop();
+            return _context5.stop();
         }
       }
-    }, _callee4);
+    }, _callee5);
   }));
   return _removeAttendee.apply(this, arguments);
 }
