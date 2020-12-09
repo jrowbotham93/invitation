@@ -15,6 +15,7 @@ export async function createAttendee(data) {
   });
   if (res.ok) {
     res.json().then(async function (attendee) {
+      await renderAttendeesList(Array(attendee));
       await getTotalAttendees(attendee);
     });
   }

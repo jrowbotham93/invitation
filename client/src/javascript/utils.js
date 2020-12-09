@@ -2,7 +2,9 @@ import { attendeeState } from './state';
 import { renderAttendeesCount } from './render';
 
 export function validateCheckboxInput(input) {
-  return input === 'on' ? true : false;
+  if (input === 'on') input = true;
+  else input = false;
+  return input;
 }
 
 export function getTotalAttendees(attendee) {

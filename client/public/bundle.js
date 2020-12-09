@@ -43,14 +43,7 @@ window.addEventListener('load', /*#__PURE__*/_babel_runtime_helpers_asyncToGener
           document.querySelector('.attendeeDetailsForm').addEventListener('submit', function (e) {
             e.preventDefault();
             var formData = new FormData(e.target);
-            var dataToPost = {
-              attending: function attending(attendee) {
-                return (0,_utils__WEBPACK_IMPORTED_MODULE_4__.validateCheckboxInput)(attendee);
-              },
-              plusOne: function plusOne(attendee) {
-                return (0,_utils__WEBPACK_IMPORTED_MODULE_4__.validateCheckboxInput)(attendee);
-              }
-            };
+            var dataToPost = {};
 
             var _iterator = _createForOfIteratorHelper(formData.entries()),
                 _step;
@@ -66,6 +59,8 @@ window.addEventListener('load', /*#__PURE__*/_babel_runtime_helpers_asyncToGener
               _iterator.f();
             }
 
+            dataToPost.attending = (0,_utils__WEBPACK_IMPORTED_MODULE_4__.validateCheckboxInput)(dataToPost.attending);
+            dataToPost.plusOne = (0,_utils__WEBPACK_IMPORTED_MODULE_4__.validateCheckboxInput)(dataToPost.plusOne);
             (0,_api__WEBPACK_IMPORTED_MODULE_7__.createAttendee)(dataToPost);
             e.target.reset();
           });
@@ -890,7 +885,7 @@ module.exports = _asyncToGenerator;
 /***/ ((module) => {
 
 // Module
-var code = "<!DOCTYPE html>\n<link rel=\"preconnect\" href=\"https://fonts.gstatic.com\">\n<link href=\"https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap\" rel=\"stylesheet\">\n<script src=\"/__/firebase/8.1.2/firebase-app.js\"></script>\n<script src=\"/__/firebase/8.1.2/firebase-analytics.js\"></script>\n<script src=\"/__/firebase/init.js\"></script>\n<html>\n    <body>\n        <main>\n            <div class=\"container spacing flex flex-center column\">\n                <h1>Gijs & James</h1>\n                <h2>are getting married...</h2>\n                <h3>Come and celebrate with us</h3>\n\n                <time datetime=\"2020-12-18\">18th Decemeber</time>\n                <time>16:00 - late</time>\n                <a\n                    href=\"https://goo.gl/maps/nkPE6bxaerDQS1j6A\"\n                    alt=\"directions\">\n                    Bercylaan 71, 1031KP, Amsterdam\n                </a>\n                <p class=\"spacingVertical\"> Please fill out the form below so we can keep track of numbers</p>\n                <h2 class=\"attendeeCount\"></h2>\n                <form class=\"spacingVertical attendeeDetailsForm\" name=\"attendeeDetailsForm\">\n                    <fieldset class=\"flex column space-evenly\">\n                        <legend>Add yourelf as an attendee</legend>\n\n                        <label for=\"name\">Attendee Name</label>\n                        <input  type=\"text\" name=\"name\" alt=\"attendee name\" required placeholder=\"James Smith\"  />\n\n                        <label for=\"attending\">Tick the box if you are definitely attending</label>\n                        <input class=\"checkboxAttending\" type=\"checkbox\" name=\"attending\" alt=\"attending guest\"  />\n\n                        <label for=\"plusOne\">Tick the box if you would like a plus one</label>\n                        <input class=\"checkboxPlusOne\" type=\"checkbox\" name=\"plusOne\" alt=\"plus one\"  />\n\n                        <label class=\"textFieldPlusOne visible\" for=\"plusOneName\">Plus one's name</label>\n                        <input class=\"textFieldPlusOne visible\" type=\"text\" name=\"plusOneName\" placeholder=\"Samuel Smith\" alt=\"plus one name\"/>\n                        <input type=\"submit\" class=\"submitForm\" value=\"Submit\"/>\n                    </fieldset>\n                </form>\n                <table>\n                    <caption>Guest list</caption>\n                    <tbody class=\"attendeeTable\">\n                        <tr>\n                            <th scope=\"col\">Name</th>\n                            <th scope=\"col\">Attending</th>\n                            <th scope=\"col\">Plus One</th>\n                            <th scope=\"col\">Name of plus one</th>\n                        </tr>\n                    </tbody>\n                </table>\n            </div>\n        </main>\n    </body>\n</html>";
+var code = "<!DOCTYPE html>\n<link rel=\"preconnect\" href=\"https://fonts.gstatic.com\">\n<link href=\"https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap\" rel=\"stylesheet\">\n<script src=\"/__/firebase/8.1.2/firebase-app.js\"></script>\n<script src=\"/__/firebase/8.1.2/firebase-analytics.js\"></script>\n<script src=\"/__/firebase/init.js\"></script>\n<html>\n    <body>\n        <main>\n            <div class=\"container spacing flex flex-center column\">\n                <h1>Gijs & James</h1>\n                <h2>are getting married...</h2>\n                <h3>Come and celebrate with us</h3>\n\n                <time datetime=\"2020-12-18\">18th Decemeber</time>\n                <time>16:00 - late</time>\n                <a\n                    href=\"https://goo.gl/maps/nkPE6bxaerDQS1j6A\"\n                    alt=\"directions\">\n                    Bercylaan 71, 1031KP, Amsterdam\n                </a>\n                <p class=\"spacingVertical\"> Please fill out the form below so we can keep track of numbers</p>\n                <h2 class=\"attendeeCount\"></h2>\n                <form class=\"spacingVertical attendeeDetailsForm\" name=\"attendeeDetailsForm\">\n                    <fieldset class=\"flex column space-evenly\">\n                        <legend>Add yourelf as an attendee</legend>\n\n                        <label for=\"name\">Attendee Name</label>\n                        <input  type=\"text\" name=\"name\" alt=\"attendee name\" required placeholder=\"James Smith\"  />\n\n                        <label for=\"attending\">Tick the box if you are definitely attending</label>\n                        <input class=\"checkboxAttending\" type=\"checkbox\" name=\"attending\" alt=\"attending guest\"  />\n\n                        <label for=\"plusOne\">Tick the box if you would like a plus one</label>\n                        <input class=\"checkboxPlusOne\" type=\"checkbox\" name=\"plusOne\" alt=\"plus one\"  />\n\n                        <label class=\"textFieldPlusOne visible\" for=\"plusOneName\">Plus one's name</label>\n                        <input class=\"textFieldPlusOne visible\" type=\"text\" name=\"plusOneName\" placeholder=\"Samuel Smith\" alt=\"plus one name\"/>\n                        <input type=\"submit\" class=\"submitForm\" value=\"Submit\"/>\n                    </fieldset>\n                </form>\n                <table>\n                    <tbody class=\"attendeeTable\">\n                        <tr>\n                            <th scope=\"col\">Name</th>\n                            <th scope=\"col\">Attending</th>\n                            <th scope=\"col\">Plus One</th>\n                            <th scope=\"col\">Name of plus one</th>\n                        </tr>\n                    </tbody>\n                </table>\n            </div>\n        </main>\n    </body>\n</html>\n";
 // Exports
 module.exports = code;
 
@@ -1302,7 +1297,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function validateCheckboxInput(input) {
-  return input === 'on' ? true : false;
+  if (input === 'on') input = true;else input = false;
+  return input;
 }
 function getTotalAttendees(attendee) {
   if (!attendee) return;
@@ -1374,9 +1370,16 @@ function renderPlusOneInputField(bool) {
   });
 }
 
-var tableRow = function tableRow(id, data) {
-  return "<tr class=\"attendeeRow\">\n    <td>".concat(data.name, "</td>\n    <td>").concat(data.attending ? '<span class="htmlTick">&#10004</span>' : '<span class="htmlCross">&#10007;</span>', "</td>\n    <td>").concat(data.plusOne ? '<span class="htmlTick">&#10004</span>' : '<span class="htmlCross">&#10007;</span>', "</td>\n    <td>").concat(data.plusOneName, "</td>\n  </tr>");
-};
+var tableRow = function tableRow(attendeeId, data) {
+  return "<tr class=\"attendeeRow\" id=".concat(attendeeId, ">\n    <td>").concat(data.name, "</td>\n    <td>").concat(data.attending ? '<span class="htmlTick">&#10004</span>' : '<span class="htmlCross">&#10007;</span>', "</td>\n    <td>").concat(data.plusOne ? '<span class="htmlTick">&#10004</span>' : '<span class="htmlCross">&#10007;</span>', "</td>\n    <td>").concat(data.plusOneName, "</td>\n  </tr>");
+}; // const tableRowNew = (attendeeId, data) =>
+//   `<fieldset class="attendeeRow" id=${attendeeId}>
+//     <input type="text" value="${data.name}"/>
+//     <input type="checkbox" ${data.attending ? 'checked' : ''}/>
+//     <input type="checkbox" ${data.plusOne ? 'checked' : ''}/>
+//     <input type="text" value="${data.plusOneName}"/>
+//   </fieldset>`;
+
 
 function renderAttendeesList(attendees) {
   if (attendees.length < 1) return;else {
@@ -1471,9 +1474,13 @@ function _createAttendee() {
                       switch (_context.prev = _context.next) {
                         case 0:
                           _context.next = 2;
-                          return (0,_utils__WEBPACK_IMPORTED_MODULE_4__.getTotalAttendees)(attendee);
+                          return (0,_render__WEBPACK_IMPORTED_MODULE_3__.renderAttendeesList)(Array(attendee));
 
                         case 2:
+                          _context.next = 4;
+                          return (0,_utils__WEBPACK_IMPORTED_MODULE_4__.getTotalAttendees)(attendee);
+
+                        case 4:
                         case "end":
                           return _context.stop();
                       }

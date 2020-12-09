@@ -32,19 +32,19 @@ const tableRow = (attendeeId, data) =>
     <td>${data.plusOneName}</td>
   </tr>`;
 
-const tableRowNew = (attendeeId, data) =>
-  `<fieldset class="attendeeRow" id=${attendeeId}>
-    <input type="text" value="${data.name}"/>
-    <input type="checkbox" ${data.attending ? 'checked' : ''}/>
-    <input type="checkbox" ${data.plusOne ? 'checked' : ''}/>
-    <input type="text" value="${data.plusOneName}"/>
-  </fieldset>`;
+// const tableRowNew = (attendeeId, data) =>
+//   `<fieldset class="attendeeRow" id=${attendeeId}>
+//     <input type="text" value="${data.name}"/>
+//     <input type="checkbox" ${data.attending ? 'checked' : ''}/>
+//     <input type="checkbox" ${data.plusOne ? 'checked' : ''}/>
+//     <input type="text" value="${data.plusOneName}"/>
+//   </fieldset>`;
 
 export function renderAttendeesList(attendees) {
   if (attendees.length < 1) return;
   else {
     const attendeeRows = `${attendees
-      .map(({ id, data }) => tableRowNew(id, data))
+      .map(({ id, data }) => tableRow(id, data))
       .join('')}`;
     attendeeTable.insertAdjacentHTML('beforeend', attendeeRows);
   }

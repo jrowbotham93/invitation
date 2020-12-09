@@ -16,14 +16,14 @@ window.addEventListener('load', async function () {
       e.preventDefault();
       const formData = new FormData(e.target);
 
-      let dataToPost = {
-        attending: (attendee) => validateCheckboxInput(attendee),
-        plusOne: (attendee) => validateCheckboxInput(attendee),
-      };
+      let dataToPost = {};
 
       for (let data of formData.entries()) {
         dataToPost[data[0]] = data[1];
       }
+      dataToPost.attending = validateCheckboxInput(dataToPost.attending);
+      dataToPost.plusOne = validateCheckboxInput(dataToPost.plusOne);
+
       createAttendee(dataToPost);
       e.target.reset();
     });
