@@ -10,6 +10,12 @@ import { createAttendee, readAttendees } from './api';
 window.addEventListener('load', async function () {
   await readAttendees();
 
+  document.querySelector('.attendeeRow').childNodes.forEach((i) =>
+    i.addEventListener('click', (e) => {
+      e.target.closest('input[name=submit]').classList.toggle('visible');
+    })
+  );
+
   document
     .querySelector('.attendeeDetailsForm')
     .addEventListener('submit', (e) => {
@@ -21,6 +27,7 @@ window.addEventListener('load', async function () {
       for (let data of formData.entries()) {
         dataToPost[data[0]] = data[1];
       }
+
       dataToPost.attending = validateCheckboxInput(dataToPost.attending);
       dataToPost.plusOne = validateCheckboxInput(dataToPost.plusOne);
 

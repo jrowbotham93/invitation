@@ -7,6 +7,12 @@ export function validateCheckboxInput(input) {
   return input;
 }
 
+export function sortaAttendees(array) {
+  return array.sort((a, b) => {
+    return Number(b.data.plusOne) - Number(a.data.plusOne);
+  });
+}
+
 export function getTotalAttendees(attendee) {
   if (!attendee) return;
 

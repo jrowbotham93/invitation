@@ -10,7 +10,6 @@ module.exports = {
     filename: 'bundle.js',
   },
   plugins: [
-    // new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, 'src', 'index.html'),
     }),
@@ -19,6 +18,7 @@ module.exports = {
 
   devServer: {
     contentBase: path.join(__dirname, 'public'),
+
     compress: true,
     watchContentBase: true,
     port: 9000,

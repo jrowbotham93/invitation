@@ -22,7 +22,7 @@
                 <p class="spacingVertical"> Please fill out the form below so we can keep track of numbers</p>
                 <h2 class="attendeeCount"></h2>
                 <form class="spacingVertical attendeeDetailsForm" name="attendeeDetailsForm">
-                    <fieldset class="flex column space-evenly">
+                    <fieldset class="fieldset flex column space-evenly">
                         <legend>Add yourelf as an attendee</legend>
 
                         <label for="name">Attendee Name</label>
@@ -39,16 +39,9 @@
                         <input type="submit" class="submitForm" value="Submit"/>
                     </fieldset>
                 </form>
-                <table>
-                    <tbody class="attendeeTable">
-                        <tr>
-                            <th scope="col">Name</th>
-                            <th scope="col">Attending</th>
-                            <th scope="col">Plus One</th>
-                            <th scope="col">Name of plus one</th>
-                        </tr>
-                    </tbody>
-                </table>
+                <section class="flex flex-center column space-evenly attendeeFieldsetList">
+                    <h2 >Guest list</h2>
+                </section>
             </div>
         </main>
     </body>

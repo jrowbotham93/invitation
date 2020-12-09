@@ -1,4 +1,4 @@
-import { attendeeCount, attendeeTable } from './globals';
+import { attendeeCount, attendeeFieldSetList } from './globals';
 
 export function renderAttendeesCount(count) {
   let color = '';
@@ -32,12 +32,45 @@ const tableRow = (attendeeId, data) =>
     <td>${data.plusOneName}</td>
   </tr>`;
 
+const tableRowNew = (attendeeId, data, index) =>
+  `<fieldset class="space-evenly flex attendeeRow" id=${attendeeId}>
+    <div class="flex column">
+      <label for="nameField-${index}">Guest name</label>
+      <input type="text" id="nameField-${index}" value="${data.name}"/>
+    </div>
+    <div class="flex column">
+      <label for="attendingField-${index}">${
+    data.attending ? 'Attending' : 'Not attending'
+  }</label>
+      <input type="checkbox" id="attendingField-${index}" ${
+    data.attending ? 'checked' : ''
+  }/>
+    </div>
+    <div class="flex column">
+      <label for="plusoneField-${index}">${
+    data.plusOne ? 'Plus One' : 'No Plus one'
+  }</label>
+      <input type="checkbox" id="plusoneField-${index}" ${
+    data.plusOne ? 'checked' : ''
+  }/>
+    </div>
+    <div class="flex column">
+      <label for="plusoneNameField-${index}">${
+    data.plusOne ? 'Name of plus one' : ''
+  }</label>
+    <input type="text" id="plusoneNameField-${index}" value="${
+    data.plusOneName
+  }"/>
+    </div>
+    <input class="visible" id="submitField-${index}" type="submit" value="submit change"/>
+  </fieldset>`;
+
 export function renderAttendeesList(attendees) {
   if (attendees.length < 1) return;
   else {
-    const attendeeRows = `${attendees
-      .map(({ id, data }) => tableRow(id, data))
+    const attendeeFieldset = `${attendees
+      .map(({ id, data }, index) => tableRowNew(id, data, index))
       .join('')}`;
-    attendeeTable.insertAdjacentHTML('beforeend', attendeeRows);
+    attendeeFieldSetList.insertAdjacentHTML('beforeend', attendeeFieldset);
   }
 }

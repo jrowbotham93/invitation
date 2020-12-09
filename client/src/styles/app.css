@@ -147,21 +147,24 @@ h4 {
 
 .space-evenly{
   justify-content: space-evenly;
-
 }
 
 /* components */
 form{
   width: 60%;
-
-}
-fieldset{
-    background:white;
-
 }
 
-input{
-  margin: 2vh;
+.fieldset{
+  background:white;
+
+}
+.attendeeRow{
+  width: 100%;
+  border: none;
+  color: #606c76;
+}
+.attendeeRow input[type="text"]{
+  border:none;
 }
 
 input[type=submit]{
@@ -184,35 +187,8 @@ input[type=text] {
   border-bottom: 1px black solid;
 }
 
-caption{
-  color: rgb(88, 134, 231);
-  text-decoration: underline;
-  font-size: 3.6rem;
-}
-
-.htmlTick{
-  color: rgb(83, 175, 83)
-}
-.htmlCross{
-  color: rgb(228, 84, 65)
-}
-
-
-table{
+section  {
   width: 100%;
-}
-th{
-  text-decoration: underline;
-}
-td{
-  text-align: center;
-}
-
-.removeAttendee {
-  color:  rgb(228, 84, 65);
-}
-.removeAttendee:hover {
-  cursor: pointer;
 }
 
 .visible{
