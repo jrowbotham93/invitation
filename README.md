@@ -20,3 +20,5 @@ Utilising firebase firestore as the persistence layer.
 
 ## Github actions
 On push to the main branch Github actions runs a pipeline which installs dependencies, and deploys the application to firebase.
+
+![Deploy to Firebase functions on merge](https://github.com/jrowbotham93/invitation/workflows/Deploy%20to%20Firebase%20functions%20on%20merge/badge.svg)
