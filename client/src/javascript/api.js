@@ -28,7 +28,6 @@ export async function readAttendees() {
   });
   if (response.ok) {
     const res = await response.json().then((attendee) => attendee);
-
     await renderAttendeesList(res);
 
     res.forEach((attendee) => getTotalAttendees(attendee));
@@ -38,6 +37,8 @@ export async function readAttendees() {
 //  update an attendee
 export async function updateAttendee(data, id) {
   const { url } = config(id);
+
+  console.log(data);
 
   const response = await fetch(url, {
     method: 'PUT',

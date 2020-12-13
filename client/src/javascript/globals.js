@@ -1,10 +1,8 @@
-export const attendeeFieldSetList = document.querySelector(
-  '.attendeeFieldsetList'
-);
-export const attendeeCount = document.querySelector('.attendeeCount');
 export const submitForm = document.querySelector('.submitForm');
-export const checkboxPlusOne = document.querySelector('.checkboxPlusOne');
-export const attendeeRow = document.querySelector('.attendeeRow');
+export const attendeeDetailsForm = document.querySelector(
+  '.attendeeDetailsForm'
+);
+export const attendeeListField = document.querySelector('.attendeeListField');
 
 export const config = (param) => {
   return {
