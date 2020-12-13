@@ -4,27 +4,15 @@
     "indexes": "firestore.indexes.json"
   },
   "functions": {
-<<<<<<< HEAD
-    "predeploy": "npm --prefix \"$RESOURCE_DIR\" run build",
-=======
     "predeploy": [
       "npm --prefix \"$RESOURCE_DIR\" run lint",
       "npm --prefix \"$RESOURCE_DIR\" run build"
     ],
->>>>>>> added update usecase, improved webpack config
     "source": "functions"
   },
   "hosting": {
     "public": "./client/public",
-<<<<<<< HEAD
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
-=======
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
-    ],
->>>>>>> added update usecase, improved webpack config
     "rewrites": [
       {
         "source": "**",
