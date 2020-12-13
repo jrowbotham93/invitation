@@ -14,5 +14,5 @@ jobs:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_WEDDING_INVITE_6F11A }}'
           args: deploy --only functions
-          env:
+        env:
             FIREBASE_CLI_PREVIEWS: hostingchannels
