@@ -27,7 +27,8 @@
     "@babel/plugin-transform-runtime": "^7.12.1",
     "@babel/runtime": "^7.12.5",
     "firebase": "^8.1.2",
-    "firebase-tools": "8.19.0"
+    "firebase-tools": "8.19.0",
+    "firebase-cli": "1.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
