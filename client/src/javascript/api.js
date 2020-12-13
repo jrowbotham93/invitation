@@ -38,8 +38,6 @@ export async function readAttendees() {
 export async function updateAttendee(data, id) {
   const { url } = config(id);
 
-  console.log(data);
-
   const response = await fetch(url, {
     method: 'PUT',
     headers: {
