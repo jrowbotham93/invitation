@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: cd functions && npm ci && firebase deploy --only functions
+      - run: cd functions && npm install && npm deploy
       - uses: w9jds/firebase-action@master
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
