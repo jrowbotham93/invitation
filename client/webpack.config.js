@@ -1,17 +1,22 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const path = require('path');
+
+// TODO add web/dev seperate configs
 
 module.exports = {
   mode: 'none',
   entry: './src/javascript/index.js',
+  devtool: 'source-map',
   output: {
     path: __dirname + '/public',
     filename: 'bundle.js',
   },
   plugins: [
-    // new CleanWebpackPlugin(),
+    new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
+      title: 'Wedding invitation',
       template: path.resolve(__dirname, 'src', 'index.html'),
     }),
     new Dotenv(),
@@ -19,6 +24,7 @@ module.exports = {
 
   devServer: {
     contentBase: path.join(__dirname, 'public'),
+
     compress: true,
     watchContentBase: true,
     port: 9000,

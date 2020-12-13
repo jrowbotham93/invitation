@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack serve",
-    "build": "webpack --config webpack.config.js",
-    "deploy": "webpack --config webpack.config.js && firebase deploy --only hosting"
+    "start": "webpack serve --config ./webpack.config.js --mode development",
+    "build": "webpack --config ./webpack.config.js --mode production",
+    "deploy": "npm run build && firebase deploy --only hosting"
   },
   "repository": {
     "type": "git",
@@ -26,13 +26,13 @@
   "dependencies": {
     "@babel/plugin-transform-runtime": "^7.12.1",
     "@babel/runtime": "^7.12.5",
-    "clean-webpack-plugin": "^3.0.0",
     "firebase": "^8.1.2"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
     "@babel/preset-env": "^7.12.7",
     "babel-loader": "^8.2.2",
+    "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^5.0.1",
     "dotenv-webpack": "^6.0.0",
     "html-loader": "^1.3.2",

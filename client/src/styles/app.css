@@ -130,8 +130,17 @@ h4 {
   padding: 10vw;
 }
 
-/* flex */
+.spacingVerticalSm {
+  padding: 5vh 0
+}
+.spacingHorizontalSm {
+  padding: 0 5vw;
+}
+.spacingSm {
+  padding: 5vw;
+}
 
+/* flex */
 .flex{
   display: flex;
 }
@@ -147,76 +156,141 @@ h4 {
 
 .space-evenly{
   justify-content: space-evenly;
+}
 
+.space-between{
+  justify-content: space-between;
 }
 
 /* components */
-form{
+.form {
   width: 60%;
-
 }
-fieldset{
-    background:white;
-
+.form * {
+  margin: 1vh 0
 }
 
-input{
-  margin: 2vh;
+.attendeeListField,
+.attendeeListField input[type="text"] {
+  font-size: 2.5rem;
+  border-bottom: thin solid black 0.5;
+}
+input[type="submit"] {
+  color: rgb(83, 175, 83);
+  text-decoration: underline solid rgb(83, 175, 83);
+
+}
+.attendeeListField input[type="button"] {
+  position: relative;
+  text-decoration: underline solid rgb(228, 84, 65);
+  color: rgb(228, 84, 65);
+  font-size: 2.5rem;
+  margin-left: auto;
+  /* bring the fieldset legend up closer to top of form */
+  margin-bottom: -5px;
+  right: 10px;
 }
 
-input[type=submit]{
+form.attendeeListField{
+  background-color: white;
+  display: inline-grid;
+  padding: 3px;
+  border: 3px solid black;
+}
+.attendeeListField {
+  height: 0;
+  z-index: 10;
+  visibility: hidden;
+  position: fixed;
+  line-height: 0;
+  font-size: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* TODO https://github.com/gdkraus/accessible-modal-dialog for future reference */
+.modalOverlay{
+  z-index: 5;
+  visibility: hidden;
+}
+
+.attendeeListField div{
+  padding: 1vh 0
+}
+
+.fieldset {
+  background:white;
+}
+
+.textFieldPlusOne{
+  height: 0;
+  visibility: hidden;
+  line-height: 0;
+  font-size: 0;
+}
+
+.attendeeRow{
+  width: 100%;
+  border: none;
+  color: #394046;
+  text-align: center;
+}
+.attendeeRow > span:hover{
+  opacity: 0.6;
+  cursor: pointer;
+}
+.attendeeRow:active {
+  opacity: 0.6;
+}
+.attendeeRow input[type="text"]{
+  border:none;
+}
+
+input[type=submit],
+input[type=button] {
   font-family: inherit;
   font-size: 4rem;
   background: transparent;
   border: none;
 }
 
-input[type=submit]:hover{
+input[type=button]:hover {
   cursor: pointer;
-  text-decoration: underline 4px black solid;
+}
+
+form input[type=submit]:hover{
+  cursor: pointer;
 }
 
 input[type=text] {
   font-family: inherit;
+  text-align: center;
   background: transparent;
   font-size: 2.5rem;
   border: none;
   border-bottom: 1px black solid;
 }
 
-caption{
-  color: rgb(88, 134, 231);
-  text-decoration: underline;
-  font-size: 3.6rem;
+.transformActive{
+  visibility: visible;
+  opacity: 1;
+  font-size: inherit;
+  line-height: inherit;
 }
-
-.htmlTick{
-  color: rgb(83, 175, 83)
+.transformActive {
+  height: inherit
 }
-.htmlCross{
-  color: rgb(228, 84, 65)
-}
-
-
-table{
-  width: 100%;
-}
-th{
-  text-decoration: underline;
-}
-td{
-  text-align: center;
-}
-
-.removeAttendee {
-  color:  rgb(228, 84, 65);
-}
-.removeAttendee:hover {
+.transformActive input[type=submit]:hover,
+.transformActive input[type=button]:hover {
   cursor: pointer;
 }
 
-.visible{
-  display: none;
+.slideDown {
+  line-height: inherit;
+  visibility: visible;
+  font-size: inherit;
+  height: inherit
 }
 
 .highlightNumberRed {

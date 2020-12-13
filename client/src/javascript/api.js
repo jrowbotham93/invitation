@@ -1,4 +1,3 @@
-// import { attendeeState } from './state';
 import { config } from './globals';
 import { renderAttendeesList } from './render';
 import { getTotalAttendees } from './utils';
@@ -30,6 +29,7 @@ export async function readAttendees() {
   if (response.ok) {
     const res = await response.json().then((attendee) => attendee);
     await renderAttendeesList(res);
+
     res.forEach((attendee) => getTotalAttendees(attendee));
   }
 }
